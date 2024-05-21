@@ -21,7 +21,7 @@ defmodule BlogWeb do
 
   def router do
     quote do
-      use Phoenix.Router, helpers: false
+      use Phoenix.Router, helpers: true
 
       # Import common connection and controller functions to use in pipelines
       import Plug.Conn
@@ -83,9 +83,16 @@ defmodule BlogWeb do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
+      import Phoenix.Router
+
+      # TODO: use Phoenix.Component instead
+      use PhoenixHTMLHelpers
+
       # Core UI components and translation
       import BlogWeb.CoreComponents
       import BlogWeb.Gettext
+      import BlogWeb.Router.Helpers
+      import BlogWeb.Helpers.HtmlHelpers
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

@@ -39,6 +39,7 @@ defmodule BlogAdmin.MixProject do
       {:phoenix, "~> 1.7.12"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 4.0"},
+      {:phoenix_html_helpers, "~> 1.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.20.2"},
       {:floki, ">= 0.30.0", only: :test},
@@ -55,6 +56,7 @@ defmodule BlogAdmin.MixProject do
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
+      {:blog, in_umbrella: true},
       {:jason, "~> 1.2"},
       {:bandit, "~> 1.2"}
     ]

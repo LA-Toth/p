@@ -10,8 +10,8 @@
 import Config
 
 config :blog_admin,
-  ecto_repos: [BlogAdmin.Repo],
-  generators: [context_app: false]
+  ecto_repos: [Blog.Repo],
+  generators: [context_app: :blog]
 
 # Configures the endpoint
 config :blog_admin, BlogAdmin.Endpoint,
@@ -21,7 +21,7 @@ config :blog_admin, BlogAdmin.Endpoint,
     formats: [html: BlogAdmin.ErrorHTML, json: BlogAdmin.ErrorJSON],
     layout: false
   ],
-  pubsub_server: BlogAdmin.PubSub,
+  pubsub_server: Blog.PubSub,
   live_view: [signing_salt: "MoRg9IvU"]
 
 # Configure esbuild (the version is required)

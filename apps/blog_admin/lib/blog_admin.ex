@@ -21,7 +21,7 @@ defmodule BlogAdmin do
 
   def router do
     quote do
-      use Phoenix.Router, helpers: false
+      use Phoenix.Router, helpers: true
 
       # Import common connection and controller functions to use in pipelines
       import Plug.Conn
@@ -83,9 +83,14 @@ defmodule BlogAdmin do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
+
+      # TODO: use Phoenix.Component instead
+      use PhoenixHTMLHelpers
+
       # Core UI components and translation
       import BlogAdmin.CoreComponents
       import BlogAdmin.Gettext
+      import BlogAdmin.Router.Helpers
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

@@ -45,6 +45,8 @@ defmodule BlogAdmin do
       import Plug.Conn
       import BlogAdmin.Gettext
 
+      import BlogAdmin.Router.Helpers
+
       unquote(verified_routes())
     end
   end

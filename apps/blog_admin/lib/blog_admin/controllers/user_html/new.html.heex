@@ -17,5 +17,11 @@
       <span><%= translate_error(message) %></span>
     <% end %>
   </div>
+  <div>
+    <%= text_input(f, :password, placeholder: "password") %>
+    <%= if message = f.errors[:password] do %>
+      <span><%= translate_error(message) %></span>
+    <% end %>
+  </div>
   <%= submit("Create User") %>
 <% end %>

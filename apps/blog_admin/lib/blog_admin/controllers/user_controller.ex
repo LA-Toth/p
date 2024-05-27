@@ -4,6 +4,8 @@ defmodule BlogAdmin.UserController do
   alias Blog.Accounts
   alias Blog.Accounts.User
 
+  plug :authenticate when action in [:index, :show]
+
   def index(conn, _params) do
     users = Accounts.list_users()
     render(conn, :index, users: users)
@@ -23,11 +25,23 @@ defmodule BlogAdmin.UserController do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         conn
+        |> BlogAdmin.Auth.login(user)
         |> put_flash(:info, "#{user.name} created!")
         |> redirect(to: user_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
+    end
+  end
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be logged in to access that page")
+      |> redirect(to: page_path(conn, :home))
+      |> halt()
     end
   end
 end

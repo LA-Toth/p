@@ -7,21 +7,15 @@
   <% end %>
   <div>
     <%= text_input(f, :name, placeholder: "Name") %>
-    <%= if message = f.errors[:name] do %>
-      <span><%= translate_error(message) %></span>
-    <% end %>
+    <%= error_tag(f, :name) %>
   </div>
   <div>
     <%= text_input(f, :username, placeholder: "Username") %>
-    <%= if message = f.errors[:username] do %>
-      <span><%= translate_error(message) %></span>
-    <% end %>
+    <%= error_tag(f, :username) %>
   </div>
   <div>
     <%= text_input(f, :password, placeholder: "password") %>
-    <%= if message = f.errors[:password] do %>
-      <span><%= translate_error(message) %></span>
-    <% end %>
+    <%= error_tag(f, :name) %>
   </div>
   <%= submit("Create User") %>
 <% end %>

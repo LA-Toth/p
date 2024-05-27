@@ -85,6 +85,7 @@ defmodule BlogAdmin do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
+      import Phoenix.Router
 
       # TODO: use Phoenix.Component instead
       use PhoenixHTMLHelpers
@@ -93,6 +94,7 @@ defmodule BlogAdmin do
       import BlogAdmin.CoreComponents
       import BlogAdmin.Gettext
       import BlogAdmin.Router.Helpers
+      import BlogAdmin.Helpers.ErrorHelpers
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

@@ -8,6 +8,7 @@ defmodule BlogAdmin.Router do
     plug :put_root_layout, html: {BlogAdmin.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug BlogAdmin.Auth
   end
 
   pipeline :api do

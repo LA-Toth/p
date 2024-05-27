@@ -22,4 +22,10 @@ defmodule BlogWeb.SessionController do
         |> render(:new)
     end
   end
+
+  def delete(conn, _) do
+    conn
+    |> BlogWeb.Auth.logout()
+    |> redirect(to: page_path(conn, :home))
+  end
 end

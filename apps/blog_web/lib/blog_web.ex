@@ -27,6 +27,7 @@ defmodule BlogWeb do
       import Plug.Conn
       import Phoenix.Controller
       import Phoenix.LiveView.Router
+      import BlogWeb.AppCtrl, only: [authenticate_user: 2]
     end
   end
 
@@ -46,6 +47,7 @@ defmodule BlogWeb do
       import BlogWeb.Gettext
 
       import BlogWeb.Router.Helpers
+      import BlogWeb.AppCtrl, only: [authenticate_user: 2]
 
       unquote(verified_routes())
     end

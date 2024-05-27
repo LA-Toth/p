@@ -8,6 +8,7 @@ defmodule BlogWeb.Router do
     plug :put_root_layout, html: {BlogWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug BlogWeb.Auth
   end
 
   pipeline :api do
@@ -23,6 +24,12 @@ defmodule BlogWeb.Router do
 
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+  end
+
+  scope "/manage", BlogWeb do
+    pipe_through [:browser, :authenticate_user]
+    get "/hello/:name", HelloController, :hello
+    get "/hello", HelloController, :index
   end
 
   # Other scopes may use custom stacks.

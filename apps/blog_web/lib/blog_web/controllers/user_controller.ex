@@ -4,7 +4,7 @@ defmodule BlogWeb.UserController do
   alias Blog.Accounts
   alias Blog.Accounts.User
 
-  plug :authenticate when action in [:index, :show]
+  plug :authenticate_user when action in [:index, :show]
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -34,14 +34,4 @@ defmodule BlogWeb.UserController do
     end
   end
 
-  defp authenticate(conn, _opts) do
-    if get_in(conn.assigns, [:current_user]) do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: page_path(conn, :home))
-      |> halt()
-    end
-  end
 end

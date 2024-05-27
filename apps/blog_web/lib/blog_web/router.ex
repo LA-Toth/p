@@ -20,8 +20,9 @@ defmodule BlogWeb.Router do
     get "/", PageController, :home
     get "/hello/:name", HelloController, :hello
     get "/hello", HelloController, :index
-    get "/users", UserController, :index
-    get "/users/:id", UserController, :show
+
+    resources "/users", UserController, only: [:index, :show, :new, :create]
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

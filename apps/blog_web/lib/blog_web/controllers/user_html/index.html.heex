@@ -1,9 +1,22 @@
-<h1>Listing Users</h1>
-<table>
-  <%= for user <- @users do %>
+<h1 class="font-bold">Listing Users</h1>
+<table class="table-auto">
+  <caption class="caption-top hover:font-bold">Listing Users</caption>
+  <thead>
     <tr>
-      <td><b><%= first_name(user) %></b> (<%= user.id %>)</td>
-      <td><%= link("View", to: user_path(@conn, :show, user.id)) %></td>
+      <th>Name</th>
+      <th>&nbsp;</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <%= for user <- @users do %>
+      <tr>
+        <td><b>
+            <%= first_name(user) %>
+          </b> (<%= user.id %>)</td>
+        <td>
+          <%= link("View", to: user_path(@conn, :show, user.id)) %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
 </table>

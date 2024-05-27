@@ -45,6 +45,8 @@ defmodule BlogWeb do
       import Plug.Conn
       import BlogWeb.Gettext
 
+      import BlogWeb.Router.Helpers
+
       unquote(verified_routes())
     end
   end
@@ -92,7 +94,7 @@ defmodule BlogWeb do
       import BlogWeb.CoreComponents
       import BlogWeb.Gettext
       import BlogWeb.Router.Helpers
-      import BlogWeb.Helpers.HtmlHelpers
+      import BlogWeb.Helpers.ErrorHelpers
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

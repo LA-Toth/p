@@ -24,28 +24,6 @@ config :blog_admin, BlogAdmin.Endpoint,
   pubsub_server: Blog.PubSub,
   live_view: [signing_salt: "MoRg9IvU"]
 
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.17.11",
-  blog_admin: [
-    args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
-    cd: Path.expand("../apps/blog_admin/assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
-
-# Configure tailwind (the version is required)
-config :tailwind,
-  version: "3.4.0",
-  blog_admin: [
-    args: ~w(
-      --config=tailwind.config.js
-      --input=css/app.css
-      --output=../priv/static/assets/app.css
-    ),
-    cd: Path.expand("../apps/blog_admin/assets", __DIR__)
-  ]
-
 # Configure Mix tasks and generators
 config :blog,
   ecto_repos: [Blog.Repo]
@@ -77,6 +55,12 @@ config :blog_web, BlogWeb.Endpoint,
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
+  blog_admin: [
+    args:
+      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../apps/blog_admin/assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ],
   blog_web: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
@@ -87,6 +71,14 @@ config :esbuild,
 # Configure tailwind (the version is required)
 config :tailwind,
   version: "3.4.0",
+  blog_admin: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../apps/blog_admin/assets", __DIR__)
+  ],
   blog_web: [
     args: ~w(
       --config=tailwind.config.js

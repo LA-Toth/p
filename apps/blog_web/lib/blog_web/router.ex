@@ -24,6 +24,8 @@ defmodule BlogWeb.Router do
 
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+
+    resources "/posts", PostController
   end
 
   scope "/manage", BlogWeb do

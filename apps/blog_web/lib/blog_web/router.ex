@@ -30,8 +30,11 @@ defmodule BlogWeb.Router do
 
   scope "/manage", BlogWeb do
     pipe_through [:browser, :authenticate_user]
+
     get "/hello/:name", HelloController, :hello
     get "/hello", HelloController, :index
+
+    resources "/posts", PostController, only: [:index]
   end
 
   # Other scopes may use custom stacks.

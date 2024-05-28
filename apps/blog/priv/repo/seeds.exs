@@ -9,3 +9,16 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Blog.Content
+
+for category <- ~w(
+    Politics
+    Garden
+    Mac
+    Canon
+    OperatingSystem
+    Science
+    ) do
+  Content.create_category!(category)
+end

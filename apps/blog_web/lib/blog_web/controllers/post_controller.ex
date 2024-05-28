@@ -4,10 +4,16 @@ defmodule BlogWeb.PostController do
   alias Blog.Content
   alias Blog.Content.Post
 
-  plug :authenticate_user when action in [:create, :update, :delete]
+  plug :authenticate_user when action in [:new, :create, :edit, :update, :delete]
+  plug :load_categories when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
-    posts = Content.list_posts()
+    posts =
+      case conn.path_info |> List.first() do
+        "manage" -> Content.list_user_posts(conn.assigns.current_user)
+        _ -> Content.list_posts()
+      end
+
     render(conn, :index, posts: posts)
   end
 
@@ -16,8 +22,8 @@ defmodule BlogWeb.PostController do
     render(conn, :new, changeset: changeset)
   end
 
-  def create(conn, %{"post" => post_params}) do
-    case Content.create_post(post_params) do
+  def create(conn, %{"post" => post_params}, current_user) do
+    case Content.create_post(current_user, post_params) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
@@ -60,5 +66,9 @@ defmodule BlogWeb.PostController do
     conn
     |> put_flash(:info, "Post deleted successfully.")
     |> redirect(to: ~p"/posts")
+  end
+
+  defp load_categories(conn, _) do
+    assign(conn, :categories, Content.list_alphabetical_categories())
   end
 end

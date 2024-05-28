@@ -7,7 +7,8 @@
   <.input field={f[:published]} type="checkbox" label="Published" />
   <.input field={f[:user_id]} type="number" label="User" />
   <.input field={f[:slug]} type="text" label="Slug" />
-  <:actions>
+  <.input field={f[:category_id]} type="select" prompt="Choose a category"  options={ category_select_simple_options(@categories)} />
+   <:actions>
     <.button>Save Post</.button>
   </:actions>
 </.simple_form>

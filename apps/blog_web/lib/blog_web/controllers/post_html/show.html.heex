@@ -12,7 +12,8 @@
   <:item title="Title"><%= @post.title %></:item>
   <:item title="Body"><%= @post.body %></:item>
   <:item title="Published"><%= @post.published %></:item>
-  <:item title="User"><%= @post.user_id %></:item>
+  <:item title="User"><%= @post.user.name %></:item>
+  <:item title="Category"><%= @post.category.name %></:item>
   <:item title="Slug"><%= @post.slug %></:item>
 </.list>
 
